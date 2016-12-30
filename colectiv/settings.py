@@ -25,7 +25,7 @@ SECRET_KEY = 'u-g(y=!8_f6@u60ytri9yw713#s8v&irp(eqbjz#+itzu*j4$u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['agile-crag-99055.herokuapp.com']
 
 
 # Application definition

@@ -2,13 +2,30 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Tether = require('react-tether');
 var antd =  require('antd');
+var GoogleMap = require('google-map-react');
 
 
+var Map = React.createClass({
+  getInitialState: function(){
+    return{
+      center: {lat: 59.938043, lng: 30.337157},
+      zoom: 9,
+      greatPlaceCoords: {lat: 59.724465, lng: 30.080121}
+    }
+  },
+  render: function() {
+    return
+       <GoogleMap
+        defaultCenter={this.props.center}
+        defaultZoom={this.props.zoom}>
+        <MyGreatPlace lat={59.955413} lng={30.337844} text={'A'} /* Kreyser Avrora */ />
+        <MyGreatPlace {...this.props.greatPlaceCoords} text={'B'} /* road circle */ />
+      </GoogleMap>
+  }
+})
+
+/* Rendering Container Form */
 ReactDOM.render(
-  <antd.Timeline>
-    <antd.Timeline.Item>Create a services site 2015-09-01</antd.Timeline.Item>
-    <antd.Timeline.Item>Solve initial network problems 2015-09-01</antd.Timeline.Item>
-    <antd.Timeline.Item dot={<Icon type="clock-circle-o" style={{ fontSize: '16px' }} />} color="red">Technical testing 2015-09-01</antd.Timeline.Item>
-    <antd.Timeline.Item>Network problems being solved 2015-09-01</antd.Timeline.Item>
-  </antd.Timeline>
-, mountNode);
+  <Map/>,
+	document.getElementById('root')
+)
