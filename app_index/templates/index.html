@@ -19,11 +19,11 @@
           <div id="locationField">
             <span>Origen:</span>
             <input id="autocomplete_start" name="origin" placeholder="Origen"
-             onFocus="geolocate()" type="text">
+             onFocus="geolocate_start()" type="text">
            </input>
            <span>Destino:</span>
            <input id="autocomplete_end" name="destiny" placeholder="Destino.."
-            onFocus="geolocate()" type="text"></input>
+            onFocus="geolocate_end()" type="text"></input>
             <button type="submit" class="btn btn-primary btn-go">Ver Precios</button>
            </div>
         </form>
@@ -50,6 +50,22 @@
   </div>
 </div>
 
+<div class="container-fluid container-van">
+  <div class="layer-van">
+    <p class="separator-white"></p>
+    <p class="p-van white">
+      viaje con chofer
+      <br />
+      a precio de autobús
+    </p>
+    <p class="separator-white"></p>
+    <p class="white uppercase">
+      desde 3€
+    </p>
+  </div>
+  <img class="img img-responsive" src="{% static 'img_landing/fotomontaje_furgo.png' %}"/>
+</div>
+
 <div class="container container-advantages">
   <div class="row">
   </div>
@@ -57,7 +73,8 @@
     <h2>ventajas, ventajas, ventajas</h2>
     <p class="separator-black"></p>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 centered">
+        <img class="img img-responsive home-icon" src="{% static 'img_landing/cerdo.png' %}"/>
         <h2>ecónomico</h2>
         <p>
           Desde 3€ por trayecto.
@@ -69,6 +86,7 @@
         <p class="separator-black"></p>
       </div>
       <div class="col-md-4">
+        <img class="img img-responsive home-icon" src="{% static 'img_landing/reloj.png' %}"/>
         <h2>rápido</h2>
         <p>
           De puerta a puerta.
@@ -80,6 +98,7 @@
         <p class="separator-black"></p>
       </div>
       <div class="col-md-4">
+        <img class="img img-responsive home-icon" src="{% static 'img_landing/sillon.png' %}"/>
         <h2>cómodo</h2>
         <p>
           Todo con tu móvil.
@@ -96,6 +115,16 @@
 </div>
 
 
+<div class="container-fluid container-hombre">
+  <img class="img img-responsive" src="{% static 'img_landing/foto_hombre_joven.png' %}"/>
+  <div class="layer-hombre">
+    <p class="separator-black"></p>
+    <p class="p-hombre">
+      muévete a tu ritmo
+    </p>
+    <p class="separator-black"></p>
+  </div>
+</div>
 
 <div class="container container-example">
   <div class="row">
@@ -211,13 +240,17 @@ function initAutocomplete() {
 
   // When the user s  elects an address from the dropdown, populate the address
   // fields in the form.
-  autocomplete.addListener('place_changed', fillInAddress);
+  autocomplete_start.addListener('place_changed', fillInAddress_start);
+  autocomplete_end.addListener('place_changed', fillInAddress);
+
 }
 
 // [START region_fillform]
-function fillInAddress() {
+function fillInAddress_start() {
 // Get the place details from the autocomplete object.
-var place = autocomplete.getPlace();
+var place = autocomplete_start.getPlace();
+
+console.log(place);
 
 for (var component in componentForm) {
   document.getElementById(component).value = '';
@@ -239,7 +272,7 @@ for (var i = 0; i < place.address_components.length; i++) {
 // [START region_geolocation]
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
-function geolocate() {
+function geolocate_start() {
   if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(function(position) {
     var geolocation = {
@@ -250,7 +283,23 @@ function geolocate() {
       center: geolocation,
       radius: position.coords.accuracy
     });
-    autocomplete.setBounds(circle.getBounds());
+    autocomplete_start.setBounds(circle.getBounds());
+  });
+  }
+}
+
+function geolocate_end() {
+  if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    var geolocation = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    };
+    var circle = new google.maps.Circle({
+      center: geolocation,
+      radius: position.coords.accuracy
+    });
+    autocomplete_end.setBounds(circle.getBounds());
   });
   }
 }

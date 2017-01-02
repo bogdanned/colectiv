@@ -1,6 +1,10 @@
 h1, h2, h3, h4, h6, p, span, a {
   color: black; }
 
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px; }
+
 .container-home {
   height: 600px; }
 
@@ -15,10 +19,11 @@ h1, h2, h3, h4, h6, p, span, a {
   font-size: 5em; }
 
 .separator-blue,
-.separator-black {
+.separator-black,
+.separator-white {
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  width: 10%;
+  width: 6em;
   text-align: center;
   margin: auto; }
 
@@ -29,6 +34,9 @@ h1, h2, h3, h4, h6, p, span, a {
   border-bottom-color: black;
   margin-bottom: 3%;
   margin-top: 3%; }
+
+.separator-white {
+  color: white; }
 
 .sub-line {
   text-transform: uppercase;
@@ -64,5 +72,38 @@ p {
   color: black;
   background-color: white;
   border-color: black; }
+
+#autocomplete_start,
+#autocomplete_end {
+  width: 230px; }
+
+.container-hombre,
+.container-van {
+  position: relative; }
+
+.home-icon {
+  margin: auto;
+  height: 80px; }
+
+.layer-hombre {
+  position: absolute;
+  top: 40%;
+  left: 10%; }
+
+.p-hombre,
+.p-van {
+  text-transform: uppercase;
+  margin: 20px; }
+
+.layer-van {
+  position: absolute;
+  top: 40%;
+  right: 10%; }
+
+.white {
+  color: white; }
+
+.uppercase {
+  text-transform: uppercase; }
 
 /*# sourceMappingURL=custom.css.map */
