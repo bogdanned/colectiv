@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Tether = require('react-tether');
 var antd =  require('antd');
-var GoogleMap = require('google-map-react');
 
 
 var Map = React.createClass({
@@ -13,14 +12,21 @@ var Map = React.createClass({
       greatPlaceCoords: {lat: 59.724465, lng: 30.080121}
     }
   },
+  initMap: function () {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: {lat: -33, lng: 151}
+  });
+
+  var image = 'images/beachflag.png';
+  var beachMarker = new google.maps.Marker({
+    position: {lat: -33.890, lng: 151.274},
+    map: map,
+    icon: image
+  });
+  }
   render: function() {
     return
-       <GoogleMap
-        defaultCenter={this.props.center}
-        defaultZoom={this.props.zoom}>
-        <MyGreatPlace lat={59.955413} lng={30.337844} text={'A'} /* Kreyser Avrora */ />
-        <MyGreatPlace {...this.props.greatPlaceCoords} text={'B'} /* road circle */ />
-      </GoogleMap>
   }
 })
 
