@@ -3,9 +3,42 @@
 
 .overlayer {
   position: absolute;
-  top: 30%; }
+  top: 20%;
+  left: 0;
+  width: 100%; }
 
 .headline {
+  text-align: center;
+  font-size: 5em; }
+
+.separator-blue,
+.separator-black {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  width: 10%;
+  text-align: center;
+  margin: auto; }
+
+.separator-blue {
+  border-bottom-color: blueviolet; }
+
+.separator-black {
+  border-bottom-color: black;
+  margin-bottom: 3%;
+  margin-top: 3%; }
+
+.sub-line {
+  text-transform: uppercase;
+  text-align: center;
+  text-align: center;
+  margin-top: 2%; }
+
+.p-title {
+  text-transform: uppercase;
+  text-align: center; }
+
+p {
+  text-transform: none;
   text-align: center; }
 
 /*# sourceMappingURL=custom.css.map */
