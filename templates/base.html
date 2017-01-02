@@ -8,10 +8,10 @@
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Arcadia Free Bootstrap Template - Home Page</title>
-    <meta name="description" content="Your Description Here">
-    <meta name="keywords" content="free boostrap, bootstrap template, freebies, free theme, free website, free portfolio theme, portfolio, personal, cv">
-    <meta name="author" content="Jenn, ThemeForces.com">
+    <title>Colectiv, la revolución del transporte</title>
+    <meta name="description" content="Colectiv. El ">
+    <meta name="keywords" content="transportte">
+    <meta name="author" content="Bogdan Nedelcu">
 
     <!-- Favicons
     ================================================== -->
@@ -57,25 +57,14 @@
     {% include "header.html" %}
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="{% static 'js/jquery.1.11.1.js' %}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/SmoothScroll.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/jasny-bootstrap.min.js' %}"></script>
 
-    <script src="{% static 'js/owl.carousel.js' %}"></script>
-    <script src="{% static 'js/typed.js' %}"></script>
-    <script>
-      $(function(){
-          $("#head-title").typed({
-            strings: ["We make websites^1000", "24/7 available for hire^1000" ,"Web design with diffence^1000"],
-            typeSpeed: 100,
-            loop: true,
-            startDelay: 100
-          });
-      });
-    </script>
+    {% block javascript %}
+    {% endblock javascript %}
+
 
     <!-- Javascripts
     ================================================== -->

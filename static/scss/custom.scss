@@ -1,3 +1,7 @@
+h1, h2, h3, h4, h6, p , span, a{
+  color: black;
+}
+
  .container-home{
    height: 600px;
  }
@@ -47,4 +51,29 @@
 p{
   text-transform: none;
   text-align: center;
+}
+
+.centered{
+  text-align: center;
+}
+
+.col-home-form{
+  padding: 5%;
+}
+
+.btn-go{
+  border-radius: 0px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  color: white;
+  background-color: black;
+  border-color: black;
+  margin-left: 20px;
+}
+
+.btn-go:hover,
+.btn-go:active{
+  color: black;
+  background-color: white;
+  border-color: black;
 }
