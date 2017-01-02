@@ -1,184 +1,369 @@
+{% extends 'base.html' %}
 {% load static %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Place Autocomplete</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-.controls {
-  margin-top: 10px;
-  border: 1px solid transparent;
-  border-radius: 2px 0 0 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  height: 32px;
-  outline: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
 
-#origin-input,
-#destination-input {
-  background-color: #fff;
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-  margin-left: 12px;
-  padding: 0 11px 0 13px;
-  text-overflow: ellipsis;
-  width: 200px;
-}
-
-#origin-input:focus,
-#destination-input:focus {
-  border-color: #4d90fe;
-}
-
-#mode-selector {
-  color: #fff;
-  background-color: #4d90fe;
-  margin-left: 12px;
-  padding: 5px 11px 0px 11px;
-}
-
-#mode-selector label {
-  font-family: Roboto;
-  font-size: 13px;
-  font-weight: 300;
-}
-
-
-    </style>
-  </head>
-  <body>
-    <input id="origin-input" class="controls" type="text"
-        placeholder="Enter an origin location">
-
-    <input id="destination-input" class="controls" type="text"
-        placeholder="Enter a destination location">
-
-    <div id="mode-selector" class="controls">
-      <input type="radio" name="type" id="changemode-walking" checked="checked">
-      <label for="changemode-walking">Walking</label>
-
-      <input type="radio" name="type" id="changemode-transit">
-      <label for="changemode-transit">Transit</label>
-
-      <input type="radio" name="type" id="changemode-driving">
-      <label for="changemode-driving">Driving</label>
+{% block content %}
+<!-- Home Section -->
+<div class="container container-home">
+  <div class="row">
+    <div class="col-md-12 overlayer">
+      <h1 class="headline">COLECTIV</h1>
     </div>
+  </div>
+</div>
 
-    <div id="map"></div>
+<div id="home">
+    <div class="container text-center">
+        <!-- Navigation -->
+        <nav id="menu" data-toggle="offcanvas" data-target=".navmenu">
+            <span class="fa fa-bars"></span>
+        </nav>
 
-    <script>
-function initMap() {
-  var origin_place_id = null;
-  var destination_place_id = null;
-  var travel_mode = google.maps.TravelMode.WALKING;
-  var map = new google.maps.Map(document.getElementById('map'), {
-    mapTypeControl: false,
-    center: {lat: -33.8688, lng: 151.2195},
-    zoom: 13
-  });
-  var directionsService = new google.maps.DirectionsService;
-  var directionsDisplay = new google.maps.DirectionsRenderer;
-  directionsDisplay.setMap(map);
+        <div class="content">
+            <h4>We've got the special power</h4>
+            <hr>
+            <div class="header-text btn">
+                <h1><span id="head-title"></span></h1>
+            </div>
+        </div>
 
-  var origin_input = document.getElementById('origin-input');
-  var destination_input = document.getElementById('destination-input');
-  var modes = document.getElementById('mode-selector');
+        <a href="#meet-us" class="down-btn page-scroll">
+            <span class="fa fa-angle-down"></span>
+        </a>
+    </div>
+</div>
 
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(origin_input);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(destination_input);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(modes);
+<!-- Meet Us Section -->
+<div id="meet-us">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="section-title">
+                    <h2>Meet Us</h2>
+                    <hr>
+                </div>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+                <a href="#services" class="down-btn page-scroll">
+                    <span class="fa fa-angle-down"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
-  var origin_autocomplete = new google.maps.places.Autocomplete(origin_input);
-  origin_autocomplete.bindTo('bounds', map);
-  var destination_autocomplete =
-      new google.maps.places.Autocomplete(destination_input);
-  destination_autocomplete.bindTo('bounds', map);
+<!-- Overview Video Section -->
+<div id="overview-video">
+    <div class="overlay">
+        <div class="container">
+            <a href="#">
+                <span class="fa fa-play"></span>
+            </a>
+        </div>
+    </div>
+</div>
 
-  // Sets a listener on a radio button to change the filter type on Places
-  // Autocomplete.
-  function setupClickListener(id, mode) {
-    var radioButton = document.getElementById(id);
-    radioButton.addEventListener('click', function() {
-      travel_mode = mode;
-    });
-  }
-  setupClickListener('changemode-walking', google.maps.TravelMode.WALKING);
-  setupClickListener('changemode-transit', google.maps.TravelMode.TRANSIT);
-  setupClickListener('changemode-driving', google.maps.TravelMode.DRIVING);
+<!-- Services Section -->
+<div id="services">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="section-title">
+                    <h2>Services</h2>
+                    <hr>
+                </div>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+            </div>
+        </div>
 
-  function expandViewportToFitPlace(map, place) {
-    if (place.geometry.viewport) {
-      map.fitBounds(place.geometry.viewport);
-    } else {
-      map.setCenter(place.geometry.location);
-      map.setZoom(17);
-    }
-  }
+        <div class="space"></div>
 
-  origin_autocomplete.addListener('place_changed', function() {
-    var place = origin_autocomplete.getPlace();
-    if (!place.geometry) {
-      window.alert("Autocomplete's returned place contains no geometry");
-      return;
-    }
-    expandViewportToFitPlace(map, place);
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <div class="service">
+                    <span class="fa fa-book fa-3x"></span>
+                    <h4>Branding</h4>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis. </p>
+                </div>
+            </div>
 
-    // If the place has a geometry, store its place ID and route if we have
-    // the other place ID
-    origin_place_id = place.place_id;
-    route(origin_place_id, destination_place_id, travel_mode,
-          directionsService, directionsDisplay);
-  });
+            <div class="col-md-4 col-sm-4">
+                <div class="service">
+                    <span class="fa fa-bicycle fa-3x"></span>
+                    <h4>Web Devepment</h4>
+                    <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Accusamus et. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis </p>
+                </div>
+            </div>
 
-  destination_autocomplete.addListener('place_changed', function() {
-    var place = destination_autocomplete.getPlace();
-    if (!place.geometry) {
-      window.alert("Autocomplete's returned place contains no geometry");
-      return;
-    }
-    expandViewportToFitPlace(map, place);
+            <div class="col-md-4 col-sm-4">
+                <div class="service">
+                    <span class="fa fa-plug fa-3x"></span>
+                    <h4>App Design</h4>
+                    <p>Nulla vitae elit libero, a pharetra augue. At vero eos et accusamus et iusto odio dignissimos ducimus. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. </p>
+                </div>
+            </div>
+        </div>
+        <a href="#works" class="down-btn page-scroll">
+            <span class="fa fa-angle-down"></span>
+        </a>
+    </div>
+</div>
 
-    // If the place has a geometry, store its place ID and route if we have
-    // the other place ID
-    destination_place_id = place.place_id;
-    route(origin_place_id, destination_place_id, travel_mode,
-          directionsService, directionsDisplay);
-  });
+<!-- Call-to-Action Section -->
+<div id="cta">
+    <div class="container text-center">
+        <a href="#" class="btn go-to-btn">Check our shop</a>
+    </div>
+</div>
 
-  function route(origin_place_id, destination_place_id, travel_mode,
-                 directionsService, directionsDisplay) {
-    if (!origin_place_id || !destination_place_id) {
-      return;
-    }
-    directionsService.route({
-      origin: {'placeId': origin_place_id},
-      destination: {'placeId': destination_place_id},
-      travelMode: travel_mode
-    }, function(response, status) {
-      if (status === google.maps.DirectionsStatus.OK) {
-        directionsDisplay.setDirections(response);
-      } else {
-        window.alert('Directions request failed due to ' + status);
-      }
-    });
-  }
-}
+<!-- Portfolio Section -->
+<div id="works">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="section-title">
+                    <h2>Our Latest Projects</h2>
+                    <hr>
+                </div>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+            </div>
+        </div>
+        <div class="space"></div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 nopadding">
+                <div class="portfolio-item">
+                    <div class="hover-bg">
+                        <a href="#">
+                            <div class="hover-text">
+                                <h5>Logo Design</h5>
+                                <p class="lead">Client Seal</p>
+                                <div class="hline"></div>
+                            </div>
+                            <img src="{% static 'img/portfolio/01.jpg' %}" class="img-responsive" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 nopadding">
+                <div class="portfolio-item">
+                    <div class="hover-bg">
+                        <a href="#">
+                            <div class="hover-text">
+                                <h5>Stationery</h5>
+                                <p class="lead">Design Project</p>
+                                <div class="hline"></div>
+                            </div>
+                            <img src="{% static 'img/portfolio/02.jpg' %}" class="img-responsive" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 nopadding">
+                <div class="portfolio-item">
+                    <div class="hover-bg">
+                        <a href="#">
+                            <div class="hover-text">
+                                <h5>Branding</h5>
+                                <p class="lead">Metalbrand</p>
+                                <div class="hline"></div>
+                            </div>
+                        </a>
+                        <img src="{% static 'img/portfolio/03.jpg' %}" class="img-responsive" alt="...">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 nopadding">
+                <div class="portfolio-item">
+                    <div class="hover-bg">
+                        <a href="#">
+                            <div class="hover-text">
+                                <h5>Business Card</h5>
+                                <p class="lead">Clothing Line</p>
+                                <div class="hline"></div>
+                            </div>
+                        </a>
+                        <img src="{% static 'img/portfolio/04.jpg' %}" class="img-responsive" alt="...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space"></div>
+    <div class="text-center">
+        <a href="#" class="btn read-more-btn">Check on Dribbble</a>
+        <br>
+        <a href="#about-us" class="down-btn page-scroll"><span class="fa fa-angle-down"></span></a>
+    </div>
+</div>
 
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaPANM66K7_Lg1rl3QkhvDFkr5PlQSD3g&libraries=places&callback=initMap"
-        async defer></script>
-  </body>
-</html>
+<!-- Clients Section -->
+<div id="clients">
+    <div class="overlay">
+        <div class="container text-center">
+            <div class="section-title">
+                <h2>Our Partners</h2>
+                <hr>
+            </div>
+
+            <ul class="clients">
+                <li><a href="#"><img src="{% static 'img/clients/01.png' %}" class="img-responsive" alt="..."></a></li>
+                <li><a href="#"><img src="{% static 'img/clients/02.png' %}" class="img-responsive" alt="..."></a></li>
+                <li><a href="#"><img src="{% static 'img/clients/03.png' %}" class="img-responsive" alt="..."></a></li>
+                <li><a href="#"><img src="{% static 'img/clients/04.png' %}" class="img-responsive" alt="..."></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- About Us Section -->
+<div id="about-us">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="section-title">
+                    <h2>About Us</h2>
+                    <hr>
+                </div>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+            </div>
+        </div>
+        <div class="space"></div>
+        <div class="row">
+            <div class="col-md-10 col-sm-10">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="team">
+                            <img src="{% static 'img/team/02.jpg' %}" class="img-responsive img-circle" alt="...">
+                            <br>
+                            <h4>Lian Gwapa</h4>
+                            <p class="small">CEO/Founder</p>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="team">
+                            <img src="{% static 'img/team/04.jpg' %}" class="img-responsive img-circle" alt="...">
+                            <br>
+                            <h4>Jenn Pereira</h4>
+                            <p class="small">Web Coder</p>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="team">
+                            <img src="{% static 'img/team/03.jpg' %}" class="img-responsive img-circle" alt="...">
+                            <br>
+                            <h4>Alan Podemski</h4>
+                            <p class="small">Web Designer</p>
+                            <hr>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-2 col-sm-2">
+                <div class="team hire">
+                    <h4>We Are Hiring!</h4>
+                    <hr>
+                    <div class="space"></div>
+                    <a href="#">
+                        <span class="fa fa-paper-plane-o fa-2x"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a href="#contact" class="page-scroll down-btn">
+                <span class="fa fa-angle-down"></span>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+    <!-- Testimonial Section -->
+<div id="testimonials">
+    <div class="overlay">
+        <div class="container">
+            <div class="section-title">
+                <h2>What my Clients Say...</h2>
+                <hr>
+            </div>
+
+            <div id="testimonial" class="owl-carousel owl-theme">
+              <div class="item">
+                <h3>Et iusto odio dignissimos ducimus qui blanditiis <br>praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint <br>occaecati cupiditate non provident. </h3>
+                <br>
+                <h6>LJ, Abc Company</h6>
+              </div>
+
+              <div class="item">
+                <h3>Fusce dapibus, tellus ac cursus commodo, tortor<br> mauris condimentum. Duis mollis, est non commodo luctus, nisi erat </h3>
+                <br>
+                <h6>Kai, Web Geekster</h6>
+              </div>
+
+              <div class="item">
+                <h3>Cras justo odio, dapibus ac facilisis in, egestas <br>eget quam. Donec id elit non mi porta gravida at eget metus.</h3>
+                <br>
+                <h6>Jenn, Coders' Playground</h6>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Section -->
+<div id="contact">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2>Contact Us</h2>
+            <hr>
+        </div>
+        <div class="space"></div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <address>
+                    <strong>Address</strong><br>
+                    <br>
+                    ThemeForces.Com<br>
+                    Igbalangao, Bugasong, Anitque<br>
+                    5704, Philippines<br>
+                    Phone: (123) 456-7890
+                    <ul class="social">
+                        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                        <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
+                        <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                        <li><a href="#"><span class="fa fa-dribbble"></span></a></li>
+                      </ul>
+                </address>
+            </div>
+
+            <div class="col-md-9">
+                <form autocomplete="off">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Your Name">
+                            <input type="text" class="form-control" placeholder="Phone No.">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Email">
+                            <input type="text" class="form-control" placeholder="Subject">
+                        </div>
+                    </div>
+                    <textarea class="form-control" rows="4" placeholder="Message"></textarea>
+                    <div class="text-right">
+                        <a href="#" class="btn send-btn">Send</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
