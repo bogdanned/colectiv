@@ -1,3 +1,5 @@
+$blue: #51b1cb;
+
 h1, h2, h3, h4, h6, p , span, a{
   color: black;
 }
@@ -8,7 +10,10 @@ h1, h2, h3, h4, h6, p , span, a{
 }
 
  .container-home{
-   height: 600px;
+   height: 850px;
+   background-image: url('../img_landing/foto_cielo.png');
+   margin: 0px;
+   width: 100%;
  }
 
 .overlayer{
@@ -34,13 +39,18 @@ h1, h2, h3, h4, h6, p , span, a{
 }
 
 .separator-blue{
-  border-bottom-color: blueviolet;
+  border-bottom-color: $blue;
 }
 
 .separator-black{
   border-bottom-color: black;
   margin-bottom: 3%;
   margin-top: 3%;
+}
+
+.equal{
+  font-size: -webkit-xxx-large;
+  margin: 3%
 }
 
 .separator-white{
@@ -92,10 +102,13 @@ p{
 #autocomplete_start,
 #autocomplete_end{
   width: 230px;
+  height: 35px;
 }
 
 .container-hombre,
-.container-van{
+.container-van,
+.container-jam,
+{
   position: relative;
 }
 
@@ -116,8 +129,17 @@ p{
   margin: 20px;
 }
 
+.container-works{
+  margin-bottom: 5%;
+}
 
 .layer-van{
+  position: absolute;
+  top: 40%;
+  right: 10%;
+}
+
+.layer-jam{
   position: absolute;
   top: 40%;
   right: 10%;
@@ -127,6 +149,81 @@ p{
   color: white
 }
 
+.blue{
+  color: $blue;
+}
+
 .uppercase{
   text-transform: uppercase;
+}
+
+
+.row-home-form{
+  top: 150px;
+  position: relative;
+}
+
+.container-advantages{
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.inline{
+  display: inline-block;
+}
+
+.subheading-blue{
+  color: black;
+  background-color: $blue;
+  text-transform: uppercase;
+  font-style: normal;
+  text-align: center;
+}
+
+.container-example{
+
+}
+
+.container-sostain{
+  background-image: url(../img_landing/foto_sostenibilidad.png);
+  height: 800px;
+  margin: 0px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+
+.row-iqual-height > img{
+  height: 40px !important;
+}
+
+
+.icon-height{
+  height: 40px !important;
+}
+
+.square{
+  opacity: 0.7;
+  width: 170px;
+  height: 100%;
+  margin: auto;
+  display: inline-block;
+}
+
+.row-2{
+  margin-top: 5%;
+}
+
+
+.row-image-footer{
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+
+#row-a-b{
+  &:nth-child(5){
+    font-size: 30px;
+  }
 }

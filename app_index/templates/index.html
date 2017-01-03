@@ -4,7 +4,7 @@
 
 {% block content %}
 <!-- Home Section -->
-<div class="container container-home">
+<div class="container container-fluid container-home">
   <div class="row">
   </div>
   <div class="overlayer">
@@ -13,9 +13,10 @@
     <p class="sub-line">
       muévete libremente
     </p>
-    <div class="row">
+    <div class="row row-home-form">
       <div class="col-md-12 col-home-form centered">
-        <form action="" method="POST">
+        <form action="{% url 'pricing' %}" method="post">
+          {% csrf_token %}
           <div id="locationField">
             <span>Origen:</span>
             <input id="autocomplete_start" name="origin" placeholder="Origen"
@@ -126,89 +127,90 @@
   </div>
 </div>
 
-<div class="container container-example">
-  <div class="row">
+
+<div class="container-fluid container-jam">
+  <img class="img img-responsive" src="{% static 'img_landing/foto_atasco.png' %}"/>
+  <div class="layer-jam">
+    <p class="p-hombre white">
+      olvida
+      <br />
+      los atascos
+    </p>
+    <p class="separator-blue"></p>
+    <p class="p-hombre white">
+      lee
+      <br />
+      juega
+      <br />
+      trabaja
+    </p>
   </div>
+</div>
+
+<div class="container container-example">
   <div class="p-title">
     <h2>un ejemplo real</h2>
     <p class="separator-black"></p>
+    <div class="row" id="row-a-b">
+      <img class="img img-responsive inline" src="{% static '/img_landing/a_b_unidos.png' %}"/>
+      <p>ida y vuelta, de lunes a viernes</p>
+      <p style="font-size: large">CON HORARIO FLEXIBLE</p>
+      <img class="img img-responsive inline icon-height" style="margin: 15px;" src="{% static '/img_landing/furgo_col.png' %}"/>
+      <p style="font-size: large">175€/mes</p>
+      <p style="font-size: large">(4€/trayecto)</p>
+    </div>
   </div>
 </div>
 
 
 <div class="container container-sostain">
-  <div class="layer-sostain">
-    <div class="p-title">
-      <h2 class="white">sostenibilidad</h2>
+  <div class="container layer-sostain">
+      <h2 class="subheading-blue">sostenibilidad</h2>
       <p class="separator-black"></p>
       <p>
         Colectiv es la solución a los problemas de tráfico
         y contaminación de ciudades como Madrid.
       </p>
-    </div>
-    <p>
-      Nuestras ciudades necesitan un nuevo modelo de transporte
-      que nos premita compartir recursos, dejar de depender del
-      coche personal y, sobre todo, contaminar menos el aire que
-      respiramos.
-    </p>
-  </div>
-</div>
 
-
-
-
-
-
-
-<!-- Contact Section -->
-<div id="contact">
-    <div class="container">
-        <div class="section-title text-center">
-            <h2>Contact Us</h2>
-            <hr>
+      <div class="row row-iqual-height">
+        <div class="col-md-12" style="text-align: center">
+          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/furgo_col.png' %}"/>
+          <span class="equal">=</span>
+          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/black_car.png' %}"/>
+          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/black_car.png' %}"/>
+          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/black_car.png' %}"/>
+          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/black_car.png' %}"/>
+          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/black_car.png' %}"/>
+          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/black_car.png' %}"/>
+          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/black_car.png' %}"/>
+          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/black_car.png' %}"/>
         </div>
-        <div class="space"></div>
+      </div>
 
-        <div class="row">
-            <div class="col-md-3">
-                <address>
-                    <strong>Address</strong><br>
-                    <br>
-                    ThemeForces.Com<br>
-                    Igbalangao, Bugasong, Anitque<br>
-                    5704, Philippines<br>
-                    Phone: (123) 456-7890
-                    <ul class="social">
-                        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                        <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
-                        <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                        <li><a href="#"><span class="fa fa-dribbble"></span></a></li>
-                      </ul>
-                </address>
-            </div>
-
-            <div class="col-md-9">
-                <form autocomplete="off">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="Your Name">
-                            <input type="text" class="form-control" placeholder="Phone No.">
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="Email">
-                            <input type="text" class="form-control" placeholder="Subject">
-                        </div>
-                    </div>
-                    <textarea class="form-control" rows="4" placeholder="Message"></textarea>
-                    <div class="text-right">
-                        <a href="#" class="btn send-btn">Send</a>
-                    </div>
-                </form>
-            </div>
+      <div class="row row-image-footer">
+        <div class="col-md-6 col-md-offset-6 row-image-footer">
+          <img class="img img-responsive pull-right" src="{% static '/img_landing/furgo_humo_co2.png' %}"/>
         </div>
+      </div>
+
+      <div class="row row-image-footer">
+        <div class="col-md-9 col-md-offset-3">
+          <img class="img img-responsive pull-right" src="{% static '/img_landing/coche_humo_co2.png' %}"/>
+        </div>
+      </div>
+      <p class="white" style="padding-top: 30%;">
+        Nuestras ciudades necesitan un nuevo modelo de transporte
+        que nos premita compartir recursos, dejar de depender del
+        coche personal y, sobre todo, contaminar menos el aire que
+        respiramos.
+      </p>
+
+      </div>
+
     </div>
-</div>
+
+
+
 {% endblock content %}
 
 {% block javascript %}
@@ -240,35 +242,7 @@ function initAutocomplete() {
 
   // When the user s  elects an address from the dropdown, populate the address
   // fields in the form.
-  autocomplete_start.addListener('place_changed', fillInAddress_start);
-  autocomplete_end.addListener('place_changed', fillInAddress);
-
 }
-
-// [START region_fillform]
-function fillInAddress_start() {
-// Get the place details from the autocomplete object.
-var place = autocomplete_start.getPlace();
-
-console.log(place);
-
-for (var component in componentForm) {
-  document.getElementById(component).value = '';
-  document.getElementById(component).disabled = false;
-}
-
-// Get each component of the address from the place details
-// and fill the corresponding field on the form.
-for (var i = 0; i < place.address_components.length; i++) {
-  var addressType = place.address_components[i].types[0];
-  if (componentForm[addressType]) {
-    var val = place.address_components[i][componentForm[addressType]];
-    document.getElementById(addressType).value = val;
-    }
-  }
-}
-// [END region_fillform]
-
 // [START region_geolocation]
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
@@ -303,6 +277,8 @@ function geolocate_end() {
   });
   }
 }
+
+
 // [END region_geolocation]
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfrXNpIRvbO7jRvnGmz1Du34NHz1YspTI&libraries=places&callback=initAutocomplete"
