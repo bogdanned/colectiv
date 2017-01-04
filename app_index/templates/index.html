@@ -13,8 +13,8 @@
     <p class="sub-line">
       muévete libremente
     </p>
-    <div class="row row-home-form">
-      <div class="col-md-12 col-home-form centered">
+    <div class="row row-home-form" >
+      <div class="col-md-12 col-home-form centered" data-spy="affix" data-offset-top="105">
         <form action="{% url 'pricing' %}" method="post">
           {% csrf_token %}
           <div id="locationField">
@@ -174,16 +174,7 @@
 
       <div class="row row-iqual-height">
         <div class="col-md-12" style="text-align: center">
-          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/furgo_col.png' %}"/>
-          <span class="equal">=</span>
-          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/black_car.png' %}"/>
-          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/black_car.png' %}"/>
-          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/black_car.png' %}"/>
-          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/black_car.png' %}"/>
-          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/black_car.png' %}"/>
-          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/black_car.png' %}"/>
-          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/black_car.png' %}"/>
-          <img class="img img-responsive inline icon-height" src="{% static '/img_landing/black_car.png' %}"/>
+          <img class="img img-responsive" src="{% static '/img_landing/furgo_igual_coches.png' %}"/>
         </div>
       </div>
 

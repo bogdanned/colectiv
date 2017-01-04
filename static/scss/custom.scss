@@ -2,6 +2,7 @@ $blue: #51b1cb;
 
 h1, h2, h3, h4, h6, p , span, a{
   color: black;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 .container-fluid{
@@ -10,10 +11,13 @@ h1, h2, h3, h4, h6, p , span, a{
 }
 
  .container-home{
-   height: 850px;
-   background-image: url('../img_landing/foto_cielo.png');
-   margin: 0px;
+   height: 500px;
    width: 100%;
+   background: url('../img_landing/foto_cielo.png') no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
  }
 
 .overlayer{
@@ -159,7 +163,6 @@ p{
 
 
 .row-home-form{
-  top: 150px;
   position: relative;
 }
 
