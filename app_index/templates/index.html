@@ -14,15 +14,14 @@
       muévete libremente
     </p>
     <div class="row row-home-form" >
-      <div class="col-md-12 col-home-form centered" data-spy="affix" data-offset-top="105">
+      <div class="col-md-12 col-home-form centered" data-spy="affix" data-offset-top="405">
         <form action="{% url 'pricing' %}" method="post">
           {% csrf_token %}
           <div id="locationField">
-            <span>Origen:</span>
+            <button type="submit" class="btn btn-primary btn-go-fake" disabled>Ver Precios</button>
             <input id="autocomplete_start" name="origin" placeholder="Origen"
              onFocus="geolocate_start()" type="text">
            </input>
-           <span>Destino:</span>
            <input id="autocomplete_end" name="destiny" placeholder="Destino.."
             onFocus="geolocate_end()" type="text"></input>
             <button type="submit" class="btn btn-primary btn-go">Ver Precios</button>
@@ -47,6 +46,25 @@
       App, te recoje donde tu quieras** y te deja donde
       tu decide, transportando simultaneamente a
       personas con rutas similares.
+    </p>
+  </div>
+</div>
+
+<div class="container-fluid container-jam">
+  <img class="img img-responsive" src="{% static 'img_landing/foto_atasco.png' %}"/>
+  <div class="layer-jam">
+    <p class="p-hombre white">
+      olvida
+      <br />
+      los atascos
+    </p>
+    <p class="separator-blue"></p>
+    <p class="p-hombre white">
+      lee
+      <br />
+      juega
+      <br />
+      trabaja
     </p>
   </div>
 </div>
@@ -128,24 +146,7 @@
 </div>
 
 
-<div class="container-fluid container-jam">
-  <img class="img img-responsive" src="{% static 'img_landing/foto_atasco.png' %}"/>
-  <div class="layer-jam">
-    <p class="p-hombre white">
-      olvida
-      <br />
-      los atascos
-    </p>
-    <p class="separator-blue"></p>
-    <p class="p-hombre white">
-      lee
-      <br />
-      juega
-      <br />
-      trabaja
-    </p>
-  </div>
-</div>
+
 
 <div class="container container-example">
   <div class="p-title">

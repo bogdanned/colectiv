@@ -9,7 +9,7 @@ h1, h2, h3, h4, h6, p, span, a {
 .container-home {
   height: 500px;
   width: 100%;
-  background: url("../img_landing/foto_cielo.png") no-repeat center center fixed;
+  background: url("../img_landing/fotomontaje_furgo.png") no-repeat center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -17,7 +17,7 @@ h1, h2, h3, h4, h6, p, span, a {
 
 .overlayer {
   position: absolute;
-  top: 20%;
+  top: 10%;
   left: 0;
   width: 100%; }
 
@@ -74,20 +74,35 @@ p {
   padding-top: 2px;
   padding-bottom: 2px;
   color: white;
-  background-color: black;
-  border-color: black;
-  margin-left: 20px; }
+  background-color: #51b1cb;
+  border-color: #51b1cb;
+  height: 30px; }
 
 .btn-go:hover,
 .btn-go:active {
-  color: black;
-  background-color: white;
-  border-color: black; }
+  color: white;
+  background-color: #4699b0;
+  border-color: #4699b0; }
 
 #autocomplete_start,
 #autocomplete_end {
   width: 230px;
-  height: 35px; }
+  height: 35px;
+  border: none;
+  padding-left: 10px;
+  box-shadow: inset 0px 0px 1px 0px black; }
+
+.btn-go-fake {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: transparent !important; }
+
+.btn-go-fake:hover {
+  cursor: none; }
+
+#autocomplete_start:focus,
+#autocomplete_end:focus {
+  outline: none; }
 
 .container-hombre,
 .container-van,
