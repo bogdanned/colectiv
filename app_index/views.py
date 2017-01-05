@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from .forms import *
 
 # Create your views here.
+
 
 def IndexView(request):
 
@@ -21,7 +23,22 @@ def PricingView(request):
     }
 
     if request.method=="POST":
-        return render(request, "pricing.html", context)
+        print(request.POST)
+        form = indexForm(request.POST)
+        if form.is_valid():
+            origin = form.cleaned_data['origin']
+            destiny = form.cleaned_data['destiny']
+            context = {
+                "origin": origin,
+                "destiny": destiny,
+            }
 
+        else:
+            context = {
+                "origin": False,
+                "destiny": False,
+            }
+
+        return render(request, "pricing.html", context)
 
     return render(request, "pricing.html", context)

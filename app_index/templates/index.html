@@ -10,8 +10,9 @@
   <div class="overlayer">
     <h1 class="headline">COLECTIV</h1>
     <p class="separator-blue"></p>
-    <p class="sub-line">
-      muévete libremente
+    <p class="p-van white">
+      viaja con chofer
+      a precio de autobús
     </p>
     <div class="row row-home-form" >
       <div class="col-md-12 col-home-form centered" data-spy="affix" data-offset-top="405">
@@ -19,11 +20,16 @@
           {% csrf_token %}
           <div id="locationField">
             <button type="submit" class="btn btn-primary btn-go-fake" disabled>Ver Precios</button>
-            <input id="autocomplete_start" name="origin" placeholder="Origen"
+            <input id="autocomplete_start" placeholder="Origen"
              onFocus="geolocate_start()" type="text">
            </input>
-           <input id="autocomplete_end" name="destiny" placeholder="Destino.."
+           <input id="autocomplete_start_id" name="origin" p
+            onFocus="geolocate_start()" type="hidden">
+          </input>
+           <input id="autocomplete_end"  placeholder="Destino.."
             onFocus="geolocate_end()" type="text"></input>
+            <input id="autocomplete_end_id" name="destiny"
+             onFocus="geolocate_start()" type="hidden">
             <button type="submit" class="btn btn-primary btn-go">Ver Precios</button>
            </div>
         </form>
@@ -47,6 +53,26 @@
       tu decide, transportando simultaneamente a
       personas con rutas similares.
     </p>
+    <div class="row row-works">
+      <div class="col-md-3 col-md-offset-0 col-works">
+        <div class="img-works-container vertical-center">
+          <img class="img img-responsive img-works" src="{% static 'img_landing/register.png' %}"/>
+        </div>
+        <p class="how-subtitle">Registrate <br />en la web on en la app</p>
+      </div>
+      <div class="col-md-4 col-md-offset-1 col-works">
+        <div class="img-works-container vertical-center">
+          <img class="img img-responsive img-works" src="{% static 'img_landing/origen_destino.png' %}"/>
+        </div>
+        <p class="how-subtitle">Selecciona <br />origen y destino</p>
+      </div>
+      <div class="col-md-3 col-md-offset-1 col-works">
+        <div class="img-works-container vertical-center">
+          <img class="img img-responsive img-works " src="{% static 'img_landing/viaja_chofer.png' %}"/>
+        </div>
+        <p class="how-subtitle">Viaja con chofer <br />compartiendo gastos</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -69,21 +95,6 @@
   </div>
 </div>
 
-<div class="container-fluid container-van">
-  <div class="layer-van">
-    <p class="separator-white"></p>
-    <p class="p-van white">
-      viaje con chofer
-      <br />
-      a precio de autobús
-    </p>
-    <p class="separator-white"></p>
-    <p class="white uppercase">
-      desde 3€
-    </p>
-  </div>
-  <img class="img img-responsive" src="{% static 'img_landing/fotomontaje_furgo.png' %}"/>
-</div>
 
 <div class="container container-advantages">
   <div class="row">
@@ -232,6 +243,7 @@ function initAutocomplete() {
       /** @type {!HTMLInputElement} */(document.getElementById('autocomplete_end')),
       {types: ['geocode']});
 
+
   // When the user s  elects an address from the dropdown, populate the address
   // fields in the form.
 }
@@ -250,6 +262,11 @@ function geolocate_start() {
       radius: position.coords.accuracy
     });
     autocomplete_start.setBounds(circle.getBounds());
+    /* Bogdan */
+    var place_start = autocomplete_start.getPlace();
+    var form_origin = document.getElementById('autocomplete_start_id');
+    console.log(place_start);
+    form_origin.value = place_start.id;
   });
   }
 }
@@ -266,6 +283,11 @@ function geolocate_end() {
       radius: position.coords.accuracy
     });
     autocomplete_end.setBounds(circle.getBounds());
+    /* Bogdan */
+    var place_end = autocomplete_end.getPlace();
+    var form_destiny = document.getElementById('autocomplete_end_id');
+    form_destiny.value = place_end.id;
+    console.log(place_end);
   });
   }
 }

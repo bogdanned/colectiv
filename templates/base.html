@@ -36,11 +36,10 @@
     <link rel="stylesheet" type="text/css"  href="{% static 'css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
-<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <script type="text/javascript" src="{% static 'js/modernizr.custom.js' %}"></script>
-
+    {% block styles %}
+    {% endblock styles %}
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
