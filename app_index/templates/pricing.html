@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load staticfiles %}
+{% load socialaccount %}
+{% load i18n %}
+{% load account socialaccount %}
 
 {% block styles %}
 <link rel="stylesheet" type="text/css"  href="{% static 'css/custom.css' %}">
@@ -14,16 +17,48 @@
 
 <div class="container-fluid full-height">
   <div class="row full-height" >
-    <div class="col-md-6 full-height vertical-align">
+    <div class="col-md-6 full-height">
+        <input id="origin-input" class="controls" type="text"
+            placeholder="Origen">
 
-      <input id="origin-input" class="controls" type="text"
-          placeholder="Origen">
+        <input id="destination-input" class="controls" type="text"
+            placeholder="Destino">
+        <div class="container container-result">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-12">
+                <div class="well well-sm">
+                  <p>Origen:</p>
+                  <p id="show-origin"></p>
+                </div>
+                <div class="well well-sm">
+                  <p>Destino:</p>
+                  <p id="show-destination"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="well well-sm">
+                <p>Duration:</p>
+                <p id="total_duration"></p>
+              </div>
+              <div class="well well-sm">
+                <p>Distance:</p>
+                <p id="total_distance"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <ul class="socialaccount_providers">
+            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+          </ul>
 
-      <input id="destination-input" class="controls" type="text"
-          placeholder="Destino">
-          <h3 id="show-destination"></h3>
-          <h3 id="show-origin"></h3>
+        </div>
     </div>
+
 
     <div class="col-md-6 full-height">
       <div id="map"></div>
@@ -39,11 +74,38 @@
 
 
 <script>
-  var map_styles = [{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7dcdcd"}]}]
+  var map_styles = [{
+      "featureType":"landscape.natural",
+      "elementType":"geometry.fill",
+      "stylers":[{
+        "visibility":"on"
+      },
+      {"color":"#e0efef"}
+      ]},
+      {
+      "featureType":"poi",
+      "elementType":"geometry.fill",
+      "stylers":[{"visibility":"on"},
+      {"hue":"#1900ff"},
+      {"color":"#c0e8e8"}]},
+      {"featureType":"road",
+       "elementType":"geometry",
+       "stylers":[{"lightness":100},
+       {"visibility":"simplified"}]},
+       {"featureType":"road",
+        "elementType":"labels",
+        "stylers":[{"visibility":"off"}]},
+        {"featureType":"transit.line",
+         "elementType":"geometry",
+         "stylers":[{"visibility":"on"},
+         {"lightness":700}]},
+         {"featureType":"water",
+          "elementType":"all",
+          "stylers":[{"color":"#7dcdcd"}]}
+        ]
+
   function initMap() {
 
-  var show_origin = document.getElementById('show-origin');
-  var show_destination = document.getElementById('show-destination');
 
   function updateOriginDestination(){
     origin_place = origin_autocomplete.getPlace()
@@ -141,14 +203,41 @@
           directionsService, directionsDisplay);
   });
 
+  function getAdress(response){
+    var show_origin = document.getElementById('show-origin');
+    var show_destination = document.getElementById('show-destination');
+    var legs = response.routes[0].legs;
+    var add_origin =  legs[0].start_address;
+    var add_end =  legs[0].end_address;
+    show_origin.innerHTML = add_origin;
+    show_destination.innerHTML = add_end;
+  }
+
+  function getTotalDistance(response){
+    console.log(response)
+    var total_distance = document.getElementById('total_distance');
+    var total_duration = document.getElementById('total_duration');
+    var totalDistance = 0;
+    var totalDuration = 0;
+    var legs = response.routes[0].legs;
+    totalDistance = legs[0].distance.text;
+    totalDuration = legs[0].duration.text;
+
+    /*
+    for(var i=0; i<legs.length; ++i) {
+        totalDistance += legs[i].distance.value;
+        totalDuration += legs[i].duration.value;
+    }*/
+
+    total_distance.innerHTML = totalDistance;
+    total_duration.innerHTML = totalDuration;
+  }
+
   function route(origin_place_id, destination_place_id, travel_mode,
                  directionsService, directionsDisplay) {
     if (!origin_place_id || !destination_place_id) {
       return;
     }
-    console.log(travel_mode)
-    console.log(origin_place_id)
-    console.log(destination_place_id)
     //updateOriginDestination()
     directionsService.route({
       origin: {'placeId': origin_place_id},
@@ -156,6 +245,8 @@
       travelMode: travel_mode
     }, function(response, status) {
       if (status === google.maps.DirectionsStatus.OK) {
+        getTotalDistance(response);
+        getAdress(response);
         directionsDisplay.setDirections(response);
       } else {
         window.alert('Directions request failed due to ' + status);

@@ -14,6 +14,17 @@ def IndexView(request):
     return render(request, "index.html", context)
 
 
+def ProfileView(request):
+
+
+    context = {
+
+    }
+
+    return render(request, "profile.html", context)
+
+
+
 
 def PricingView(request):
 

@@ -223,4 +223,11 @@ p {
 .row-works:first-child > div > img {
   width: 40%; }
 
+.container-result {
+  top: 60%;
+  width: 100%;
+  display: inline;
+  height: 20%;
+  position: relative; }
+
 /*# sourceMappingURL=custom.css.map */
