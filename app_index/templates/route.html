@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load staticfiles %}
+{% load socialaccount %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css"  href="{% static 'css/custom.css' %}">
+
+<link rel="stylesheet" type="text/css"  href="{% static 'css/map.css' %}">
+
+{% endblock styles %}
+
+
+{% block content %}
+
+<form action="{% url 'routes' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>
+
+
+{% endblock content %}
+
+{% block javascript %}
+
+{% endblock javascript %}

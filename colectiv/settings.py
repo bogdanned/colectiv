@@ -110,6 +110,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+ACCOUNT_USERNAME_REQUIRED = False
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
@@ -139,7 +142,7 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
-APPEND_SLASH=False
+APPEND_SLASH = False
 
 
 
@@ -151,3 +154,8 @@ AUTHENTICATION_BACKENDS = (
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 )
+
+
+# ADAPTER
+ACCOUNT_ADAPTER = 'app_index.adapter.ColectivAdapter'
+SOCIALACCOUNT_ADAPTER = 'app_index.adapter.ColectivSocialAccountAdapter'

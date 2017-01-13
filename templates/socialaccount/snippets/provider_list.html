@@ -16,12 +16,14 @@
 {% endfor %}
 {% endif %}
 
-<li>
+<div class="col-md-6" id="socialaccount_provider {{provider.id}}">
   <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}"
      href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
      <button class="btn btn-primary">{{provider.name}}</button>
    </a>
-</li>
+</div>
+
+
 
 
 {% endfor %}

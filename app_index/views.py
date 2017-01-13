@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse, redirect
 from .forms import *
+from django.http import JsonResponse
 
-# Create your views here.
 
 
 def IndexView(request):
@@ -28,9 +28,10 @@ def ProfileView(request):
 
 def PricingView(request):
 
+    form_route = RouteForm()
 
     context = {
-
+        'form_route': form_route,
     }
 
     if request.method=="POST":
@@ -53,3 +54,25 @@ def PricingView(request):
         return render(request, "pricing.html", context)
 
     return render(request, "pricing.html", context)
+
+
+def RouteView(request):
+    form = RouteForm()
+    context = {
+        'form': form,
+    }
+    success = False
+    if request.method == "POST":
+        form = RouteForm(request.POST)
+        print(form.is_valid())
+        print(form.errors)
+        if form.is_valid():
+            success = True
+            try:
+                route = form.save()
+                return JsonResponse({'route_id': route.id})
+            except:
+                pass
+
+        return JsonResponse({'route_id': None})
+    return redirect(reverse('index'))
