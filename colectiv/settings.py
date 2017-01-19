@@ -110,7 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-ACCOUNT_USERNAME_REQUIRED = False
 
 
 # Internationalization
@@ -145,8 +144,7 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 APPEND_SLASH = False
 
 
-
-#  All auth
+# All auth
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
@@ -157,5 +155,6 @@ AUTHENTICATION_BACKENDS = (
 
 
 # ADAPTER
+ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_ADAPTER = 'app_index.adapter.ColectivAdapter'
 SOCIALACCOUNT_ADAPTER = 'app_index.adapter.ColectivSocialAccountAdapter'

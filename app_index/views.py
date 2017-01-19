@@ -70,6 +70,7 @@ def RouteView(request):
             success = True
             try:
                 route = form.save()
+                request.session['route_id'] = route.id
                 return JsonResponse({'route_id': route.id})
             except:
                 pass

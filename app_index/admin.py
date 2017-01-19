@@ -3,6 +3,6 @@ from .models import *
 # Register your models here.
 
 class RouteAdmin(admin.ModelAdmin):
-    list_display = ['id','origin', 'destiny']
+    list_display = ['user','id', 'origin', 'destiny', 'duration', 'distance', 'created']
 
 admin.site.register(Route, RouteAdmin)

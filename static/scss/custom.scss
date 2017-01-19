@@ -307,3 +307,48 @@ p{
   height: 20%;
   position: relative;
 }
+
+
+.row-logo{
+  padding: 2%;
+}
+
+/* Pricing  */
+
+.img-logo{
+  height: 20px;
+}
+
+.input-map-pricing{
+  display: inline-block;
+  border: solid black 1px !important;
+  margin-left: 0px;
+}
+
+
+#total_distance{
+  display: inline-block;
+  float: right;
+  position: absolute;
+  right: 4%;
+  top: 6%;
+  font-size: 22px;
+}
+
+
+.row-pricing-footer{
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('../img_landing/foto_taxi.png');
+}
+
+
+#row-pricing-colectiv{
+  text-align: 10%;
+  & > div > img{
+    height: 40px;
+  }
+  padding: 5%;
+}
+
+/* Pricing  */

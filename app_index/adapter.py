@@ -39,14 +39,11 @@ class ColectivAdapter(DefaultAccountAdapter):
             # this adapter by adding
             user.save()
 
-        route_id = request.COOKIES.get('route_id')
 
-        if route_id:
-            try:
-                route = Route.objects.get(pk=route_id)
-                route.user = u
-            except:
-                pass
+        route_id = request.session.__getitem__('route_id')
+        route = Route.objects.get(pk=route_id)
+        route.user = user
+        route.save()
 
         return user
 
@@ -63,15 +60,18 @@ class ColectivSocialAccountAdapter(DefaultSocialAccountAdapter):
         else:
             get_account_adapter().populate_username(request, u)
         sociallogin.save(request)
-
-
-        route_id = request.COOKIES.get('route_id')
-
-        if route_id:
-            try:
-                route = Route.objects.get(pk=route_id)
-                route.user = u
-            except:
-                pass
+        items = request.session.items()
+        print(items)
+        for key, value in items:
+            print(key)
+            print(value)
+        route_id = request.session.__getitem__('route_id')
+        print(route_id)
+        try:
+            route = Route.objects.get(pk=route_id)
+            route.user = u
+            route.save()
+        except:
+            pass
 
         return u

@@ -13,7 +13,7 @@ class Route(models.Model):
     user = models.OneToOneField(app_settings.USER_MODEL, blank=True, null=True)
     destiny = models.CharField(max_length=3000, blank=True, null=True)
     origin = models.CharField(max_length=3000, blank=True, null=True)
-    duration = models.DurationField(blank=True, null=True)
+    duration = models.CharField(max_length=3000, blank=True, null=True)
     distance = models.CharField(max_length=3000, blank=True, null=True)
 
     def __unicode__(self):
