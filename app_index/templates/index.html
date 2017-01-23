@@ -7,11 +7,13 @@
 <div class="container container-fluid container-home">
   <div class="row">
   </div>
+  <div id="layer">
+  </div>
   <div class="overlayer">
     <h1 class="headline">COLECTIV</h1>
     <p class="separator-white"></p>
     <p class="p-van white">
-      viaja con chofer
+      viaja con chófer
       a precio de autobús
     </p>
     <div class="row row-home-form" >
@@ -78,7 +80,11 @@
 
 <div class="container-fluid container-jam">
   <img class="img img-responsive" src="{% static 'img_landing/foto_atasco.png' %}"/>
+  <div id="layer">
+
+  </div>
   <div class="layer-jam">
+
     <p class="p-hombre white">
       olvida
       <br />
@@ -100,12 +106,12 @@
   <div class="row">
   </div>
   <div class="p-title">
-    <h2>ventajas, ventajas, ventajas</h2>
+    <h2>Todo ventajas</h2>
     <p class="separator-black"></p>
     <div class="row">
       <div class="col-md-4 centered">
         <img class="img img-responsive home-icon" src="{% static 'img_landing/cerdo.png' %}"/>
-        <h2>ecónomico</h2>
+        <h3>ecónomico</h3>
         <p>
           Desde 3€ por trayecto.
           <br />
@@ -113,11 +119,10 @@
           <br />
           Pago por kilometro.
         </p>
-        <p class="separator-black"></p>
       </div>
       <div class="col-md-4">
         <img class="img img-responsive home-icon" src="{% static 'img_landing/reloj.png' %}"/>
-        <h2>rápido</h2>
+        <h3>rápido</h3>
         <p>
           De puerta a puerta.
           <br />
@@ -125,11 +130,10 @@
           <br />
           No aparques
         </p>
-        <p class="separator-black"></p>
       </div>
       <div class="col-md-4">
         <img class="img img-responsive home-icon" src="{% static 'img_landing/sillon.png' %}"/>
-        <h2>cómodo</h2>
+        <h3>cómodo</h3>
         <p>
           Todo con tu móvil.
           <br />
@@ -137,8 +141,6 @@
           <br />
           Siéntase y disfruta.
         </p>
-        <p class="separator-black"></p>
-
       </div>
     </div>
   </div>
@@ -164,6 +166,10 @@
     <h2>un ejemplo real</h2>
     <p class="separator-black"></p>
     <div class="row" id="row-a-b">
+      <div class="col-md-12">
+        <span id="ex-start">Leganes</span>
+        <span id="ex-stop">Getafe</span>
+      </div>
       <img class="img img-responsive inline" src="{% static '/img_landing/a_b_unidos.png' %}"/>
       <p>ida y vuelta, de lunes a viernes</p>
       <p style="font-size: large">CON HORARIO FLEXIBLE</p>
@@ -179,10 +185,10 @@
   <div class="container layer-sostain">
       <h2 class="subheading-blue">sostenibilidad</h2>
       <p class="separator-black"></p>
-      <p>
+      <h3 style="text-align: center">
         Colectiv es la solución a los problemas de tráfico
         y contaminación de ciudades como Madrid.
-      </p>
+      </h3>
 
       <div class="row row-iqual-height">
         <div class="col-md-12" style="text-align: center">
@@ -201,7 +207,10 @@
           <img class="img img-responsive pull-right" src="{% static '/img_landing/coche_humo_co2.png' %}"/>
         </div>
       </div>
-      <p class="white">
+      <div id="footer-fill">
+
+      </div>
+      <p class="white" style="text-align: center">
         Nuestras ciudades necesitan un nuevo modelo de transporte
         que nos premita compartir recursos, dejar de depender del
         coche personal y, sobre todo, contaminar menos el aire que
