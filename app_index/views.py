@@ -35,7 +35,6 @@ def PricingView(request):
     }
 
     if request.method=="POST":
-        print(request.POST)
         form = indexForm(request.POST)
         if form.is_valid():
             origin = form.cleaned_data['origin']
@@ -77,3 +76,17 @@ def RouteView(request):
 
         return JsonResponse({'route_id': None})
     return redirect(reverse('index'))
+
+
+def getEmail(request):
+    if request.method == "POST":
+        form = EmailForm(request.POST)
+        if form.is_valid():
+            email = form.save()
+            try:
+                route_id = request.session.__getitem__('route_id')
+                route = Route.objects.get(pk=route_id)
+                route.email = email
+                route.save()
+            except:
+                pass

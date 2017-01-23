@@ -39,7 +39,6 @@ class ColectivAdapter(DefaultAccountAdapter):
             # this adapter by adding
             user.save()
 
-
         route_id = request.session.__getitem__('route_id')
         route = Route.objects.get(pk=route_id)
         route.user = user

@@ -158,3 +158,4 @@ AUTHENTICATION_BACKENDS = (
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_ADAPTER = 'app_index.adapter.ColectivAdapter'
 SOCIALACCOUNT_ADAPTER = 'app_index.adapter.ColectivSocialAccountAdapter'
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False

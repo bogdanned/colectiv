@@ -1,9 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% load staticfiles %} {% load socialaccount %} {% load i18n %} {% load account socialaccount %} {% block styles %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
-
 <link rel="stylesheet" type="text/css" href="{% static 'css/map.css' %}"> {% endblock styles %} {% block content %}
-
-<div class="container-fluid full-height">
+<div class="container-fluid height80">
     <div class="row full-height">
         <div class="col-md-6 full-height">
           <div class="row row-logo">
@@ -15,9 +13,6 @@
             <div class="col-md-10">
               <input id="origin-input" class="controls input-map-pricing" type="text" placeholder="Origen">
               <input id="destination-input" class="controls input-map-pricing" type="text" placeholder="Destino">
-              <div class="col-md-12">
-                <button id="new-search" class="btn btn-primary pull-right">Nueva Busqueda</button>
-              </div>
             </div>
             <div class="col-md-2">
               <p id="total_distance"></p>
@@ -26,11 +21,14 @@
           <div class="row">
           </div>
           <div class="row" id="row-pricing-colectiv">
-            <div class="col-md-4">
-              <img  src="{% static 'img_landing/furgo_col.png' %}"/>
+            <div class="col-md-4 center">
+              <img src="{% static 'img_landing/furgo_col.png' %}"/>
+              <p>
+                COLECTIV
+              </p>
             </div>
             <div class="col-md-4">
-              <p>
+              <p class="price-pricing">
                 6.5 €
               </p>
             </div>
@@ -38,28 +36,48 @@
               <p id="total_duration"></p>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <button id="btn-submit-route" type="button" class="btn btn-info btn-lg">Registrate</button>
+          <div class="row row-register-pricing">
+            <div class="col-md-offset-4 col-md-4">
+              <button id="btn-submit-route" type="button" class="btn btn-info btn-lg btn-submit-route">Registrate</button>
+            </div>
+          </div>
+          <div class="row row-register-other">
+            <div class="col-md-offset-4 col-md-4">
+              <p class="otras">
+                Otras opciones
+              </p>
+              <p class="estimate">
+                (precios estimados)
+              </p>
+            </div>
+          </div>
+          <div class="row row-">
+            <div class="col-md-4 center">
+              <img class="taxi-icon" src="{% static 'img_landing/icono_taxi.png' %}"/>
+              <p>
+                TAXI
+              </p>
+            </div>
+            <div class="col-md-4 center">
+              <p class="price-pricing silver-bkg">
+                6.5 €
+              </p>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
-              <button id="btn-submit-route" type="button" class="btn btn-info btn-lg">Registrate</button>
+            <div class="col-md-4 center">
+              <img class="taxi-icon" src="{% static 'img_landing/icono_taxi.png' %}"/>
+              <p>
+                  OTRAS APPS
+              </p>
             </div>
-            <div class="col-md-4">
-              <button id="btn-submit-route" type="button" class="btn btn-info btn-lg">Registrate</button>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <button id="btn-submit-route" type="button" class="btn btn-info btn-lg">Registrate</button>
-            </div>
-            <div class="col-md-4">
-              <button id="btn-submit-route" type="button" class="btn btn-info btn-lg">Registrate</button>
+            <div class="col-md-4 center">
+              <p class="price-pricing silver-bkg">
+                6.5 €
+              </p>
             </div>
           </div>
-          <div class="row">
+          <div class="row" style="display: none">
             <div class="col-md-12">
                 <div class="well well-sm">
                     <p>Origen:</p>
@@ -80,24 +98,14 @@
 
 
 <div class="row row-pricing-footer">
-  <div class="col-md-6 col-md-offset-3">
-    <h3>Ahora compartiendo gastos</h3>
-    <br />
-    <h3>Ahora compartiendo gastos</h3>
-    <br />
-    <h3>Ahora compartiendo gastos</h3>
+  <div class="col-md-6 col-md-offset-3 col-footer-pricing">
+    <hr class="hr-footer"/>
+    <h3 class="pricing-footer-text">Ahora compartiendo gastos</h3>
+    <h3 class="pricing-footer-text">Ahora compartiendo gastos</h3>
+    <h3 class="pricing-footer-text">Ahora compartiendo gastos</h3>
+    <hr class="hr-footer"/>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
 
 <div style="display: none">
   <form id="route-form" action="{% url 'routes' %}" method="post">
@@ -107,46 +115,40 @@
   </form>
 </div>
 
-
-
-
-
-
-
-
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-sm">
 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Registrate</h4>
+        <img class="img-responsive register-logo" src="{% static 'img/logo_black.png' %}" />
       </div>
       <div class="modal-body">
-        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-          {% csrf_token %}
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" name="login" class="form-control" aria-describedby="emailHelp" placeholder="Email">
-          </div>
-          <div class="form-group">
-            <label >Contraseña</label>
-            <input type="password" name="password1" class="form-control" placeholder="Contraseña">
-          </div>
-          <div class="form-group">
-            <label >Repetir Contraseña</label>
-            <input type="password" name="password2" class="form-control" placeholder="Repetir Contraseña">
-          </div>
-          <button type="submit" class="btn btn-alert pull-right">Registarse</button>
-        </form>
         <div class="row">
-            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-        </dic>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <div class="col-md-12">
+            <p>
+              ¡Regístrate y consigue 10€ gratis
+              <br />
+              para tus primeros viajes!
+            </p>
+            <form class="signup" id="signup_form" method="post" action="{% url 'get-email' %}">
+              {% csrf_token %}
+              <div class="col-md-12">
+                <input type="email" name="login" class="form-control" aria-describedby="emailHelp" placeholder="Email">
+              </div>
+              <div class="col-md-12">
+                <input type="submit" class="btn btn-primary btn-register" value="Registrarse">
+              </div>
+              {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+          </div>
+        </div>
       </div>
     </div>
 
@@ -167,7 +169,6 @@
 {% block javascript %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script>
-
     function clickFacebook(){
       fbq('track', 'Lead', {
       value: 10.00,
@@ -225,8 +226,6 @@
     }]
 
     function initMap() {
-
-
         function updateOriginDestination() {
             origin_place = origin_autocomplete.getPlace()
             destination_place = destination_autocomplete.getPlace()
@@ -397,7 +396,6 @@
     }
 
     $(document).ready(function(){
-
       function submitForm(form){
           var url = form.attr("action");
           var formData = $(form).serializeArray();
@@ -423,16 +421,15 @@
         clickFacebook();
         saveRoute();
       });
+
+
+      $("#signup_form").validate();
+
 });
 
-
 </script>
-
-
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfrXNpIRvbO7jRvnGmz1Du34NHz1YspTI&libraries=places&callback=initMap" async defer></script>
-
 <script>
-
 </script>
 
 {% endblock javascript %}

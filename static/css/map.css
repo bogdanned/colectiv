@@ -60,6 +60,10 @@ font-weight: 300;
   height: 100%;
 }
 
+.height80{
+  height: 80%;
+}
+
 .vertical-align {
   text-align: center;
   display: flex;

@@ -1,5 +1,12 @@
 $blue: #51b1cb;
 $blue-dark: #4699b0;
+$silver: #C0C0C0;
+
+
+.silver{
+  color: $silver;
+}
+
 
 h1, h2, h3, h4, h6, p , span, a{
   color: black;
@@ -29,8 +36,10 @@ h1, h2, h3, h4, h6, p , span, a{
 }
 
 .headline{
+  font-weight: 900;
   text-align: center;
   font-size: 5em;
+  color: white;
 }
 
 .separator-blue,
@@ -49,8 +58,8 @@ h1, h2, h3, h4, h6, p , span, a{
 
 .separator-black{
   border-bottom-color: black;
-  margin-bottom: 3%;
-  margin-top: 3%;
+  margin-bottom: 2%;
+  margin-top: 2%;
 }
 
 .equal{
@@ -160,8 +169,9 @@ p{
 }
 
 .container-works{
-  margin-bottom: 5%;
-}
+     margin-top: 3%;
+     margin-bottom: 4%;
+ }
 
 .layer-van{
   position: absolute;
@@ -272,7 +282,8 @@ p{
     text-align: center;
     margin: auto;
     bottom: 2px;
-    font-weight: 700;
+    font-weight: 400;
+    font-size: 16px;
   }
   &  > img{
     position: relative;
@@ -282,10 +293,10 @@ p{
   }
 }
 
-.vertical-center {
+.vertical-center{
   text-align: center;
   width: 60%;
-  height: 300px;
+  height: 180px;
   display: flex;
   align-items: center;
   margin: auto;
@@ -348,7 +359,164 @@ p{
   & > div > img{
     height: 40px;
   }
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+
+
+
+
+/* Pricing  */
+
+
+btn-submit-route{
+  padding: 10px 40px;
+  border-radius: 0px;
+}
+
+
+.taxi-icon{
+  height: 40px;
+}
+
+
+.row-register-pricing{
+  padding: 1%;
+  & > div {
+    text-align: center !important;
+  }
+
+}
+
+
+.btn-submit-route{
+  padding: 10px 30px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 0px;
+}
+
+
+p.price-pricing{
+  padding: 5px;
+  padding-left: 10px;
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+  font-weight: 900;
+  width: 100px;
+  margin: auto;
+  font-size: 25px;
+}
+
+
+.silver-bkg{
+  background-color: $silver !important;
+}
+
+#total_duration{
+  margin-bottom: 0px;
+  margin-top: 10px;
+  font-size: 25px;
+}
+
+.row-register-other{
+  padding: 3%;
+  & > div > p.otras{
+    font-weight: bold !important;
+    margin-bottom: 0px;
+  }
+  & > div > p.estimate{
+    margin-bottom: 0px;
+  }
+}
+
+.center{
+  text-align: center !important;
+}
+
+
+.pricing-footer-text{
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  font-size: 25px;
+  text-transform: uppercase;
+  font-style: normal;
+  margin: 5px;
+  letter-spacing: 4px;
+}
+
+.col-footer-pricing{
   padding: 5%;
 }
 
-/* Pricing  */
+.hr-footer{
+  border-color: white !important;
+  width: 40%;
+  border-width: 2px;
+}
+
+
+/* Modal Register Start */
+
+.modal-content{
+  border-radius: 0px;
+  box-shadow: none;
+}
+
+input.form-control{
+  border-radius: 0px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+label, input, p{
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+label{
+  font-weight: 100;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+
+.btn-register,
+.facebook,
+.google{
+  width: 100%;
+  margin-top: 10px;
+}
+
+
+.register-logo{
+  margin-top: 40px;
+}
+
+.modal-body {
+    padding-bottom: 30px;
+}
+
+/* Modal Register End */
+
+h2{
+  font-weight: 700;
+}
+
+.p-works{
+  width: 75%;
+  text-align: center;
+  margin: auto;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.img-phone{
+  height: 174px;
+  margin: auto;
+}
+
+.img-a-b{
+  height: 110px;
+  margin: auto;
+}

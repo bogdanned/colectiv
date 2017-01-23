@@ -1,5 +1,5 @@
 from django import forms
-from .models import Route
+from .models import *
 from django.forms import ModelForm
 
 
@@ -16,4 +16,12 @@ class RouteForm(ModelForm):
             'origin',
             'duration',
             'distance',
+        )
+
+
+class EmailForm(ModelForm):
+    class Meta:
+        model = Email
+        fields = (
+            'email',
         )
