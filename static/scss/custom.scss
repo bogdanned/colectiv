@@ -232,7 +232,7 @@ p{
   margin: 0px;
   width: 100%;
   background-repeat: no-repeat;
-  background-size: 100% auto;
+  background-size: cover;
   height: 900px;
 }
 
@@ -341,16 +341,11 @@ p{
   margin-left: 0px;
 }
 
-
 #total_distance{
   display: inline-block;
-  float: right;
-  position: absolute;
-  right: 4%;
-  top: 6%;
   font-size: 22px;
+  float: right;
 }
-
 
 .row-pricing-footer{
   background-repeat: no-repeat;
@@ -455,11 +450,14 @@ p.price-pricing{
   text-transform: uppercase;
   font-style: normal;
   margin: 5px;
-  letter-spacing: 4px;
+  letter-spacing: 2px;
 }
 
 .col-footer-pricing{
-  padding: 5%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-left: 0px;
+  padding-left: 0px;
 }
 
 .hr-footer{
@@ -556,6 +554,8 @@ h2{
 
 .layer-sostain{
   margin-top: 5%;
+  padding-left: 15%;
+  padding-right: 15%;
 }
 
 

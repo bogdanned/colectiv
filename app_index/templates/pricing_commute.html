@@ -1,0 +1,406 @@
+{% extends 'base.html' %} {% load static %} {% load staticfiles %} {% load socialaccount %} {% load i18n %} {% load account socialaccount %} {% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/map.css' %}"> {% endblock styles %} {% block content %}
+<div class="container-fluid height80">
+    <div class="row full-height">
+        <div class="col-md-6 full-height">
+          <div class="row row-logo">
+            <div class="col-md-6">
+              <img class="img-logo" src="{% static 'img/logo_black.png' %}" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-10">
+              <input id="origin-input" class="controls input-map-pricing" type="text" placeholder="Origen">
+              <input id="destination-input" class="controls input-map-pricing" type="text" placeholder="Destino">
+              <p id="total_distance">0 km</p>
+            </div>
+          </div>
+          <div class="row">
+          </div>
+          <div class="row" id="row-pricing-colectiv">
+            <div class="col-md-4 center">
+              <img src="{% static 'img_landing/furgo_col.png' %}"/>
+              <p>
+                COLECTIV
+              </p>
+            </div>
+            <div class="col-md-4">
+              <p class="price-pricing">
+                6.5 €
+              </p>
+            </div>
+            <div class="col-md-4">
+              <p id="total_duration">0 mins</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <h4 style="text-align: center; padding: 5%">Precio por trayecto para cualquier hora del días
+              y para cualquier día de la semana</h4>
+            </div>
+          </div>
+          <div class="row row-register-pricing">
+            <div class="col-md-offset-4 col-md-4">
+              <button id="btn-submit-route" type="button" class="btn btn-info btn-lg btn-submit-route">Registrate</button>
+            </div>
+          </div>
+
+
+
+          <div class="row" style="display: none">
+            <div class="col-md-12">
+                <div class="well well-sm">
+                    <p>Origen:</p>
+                    <span id="show-origin"></span>
+                </div>
+                <div class="well well-sm">
+                    <p>Destino:</p>
+                    <p id="show-destination"></p>
+                </div>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-6 full-height">
+        <div id="map"></div>
+    </div>
+
+</div>
+
+
+<div class="row row-pricing-footer">
+  <div class="col-md-6 col-md-offset-3 col-footer-pricing">
+    <hr class="hr-footer"/>
+    <h3 class="pricing-footer-text">Ahora compartiendo gastos</h3>
+    <h3 class="pricing-footer-text">Viaja a donde quieras con chofer</h3>
+    <h3 class="pricing-footer-text">Reduce tráfico y contaminación</h3>
+    <hr class="hr-footer"/>
+  </div>
+</div>
+
+<div style="display: none">
+  <form id="route-form" action="{% url 'routes' %}" method="post">
+      {% csrf_token %}
+      {{ form_route }}
+      <input type="submit" value="Submit" />
+  </form>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <img class="img-responsive register-logo" src="{% static 'img/logo_black.png' %}" />
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p>
+              ¡Regístrate y consigue 10€ gratis
+              <br />
+              para tus primeros viajes!
+            </p>
+            <form class="signup" id="signup_form" method="post" action="{% url 'get-email' %}">
+              {% csrf_token %}
+              <div class="col-md-12">
+                <input type="email" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Email">
+              </div>
+              <div class="col-md-12">
+                <input type="submit" class="btn btn-primary btn-register" value="Registrarse">
+              </div>
+              {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+</div>
+</div>
+
+
+
+<h2>{{origin}}</h2>
+
+<h2>{{destiny}}</h2>
+
+{% endblock content %}
+{% block javascript %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script>
+    function clickFacebook(){
+      fbq('track', 'Lead', {
+      value: 10.00,
+      currency: 'USD'
+      });
+    }
+
+    //Map Functions
+    var map_styles = [{
+        "featureType": "landscape.natural",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#e0efef"
+        }]
+    }, {
+        "featureType": "poi",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "hue": "#1900ff"
+        }, {
+            "color": "#c0e8e8"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [{
+            "lightness": 100
+        }, {
+            "visibility": "simplified"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "transit.line",
+        "elementType": "geometry",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "lightness": 700
+        }]
+    }, {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [{
+            "color": "#7dcdcd"
+        }]
+    }]
+
+    function initMap() {
+        function updateOriginDestination() {
+            origin_place = origin_autocomplete.getPlace()
+            destination_place = destination_autocomplete.getPlace()
+
+            if (origin_place) {
+                console.log(origin_place.formatted_address);
+                show_origin.innerHTML = origin_place.formatted_address;
+            }
+
+            if (destination_place) {
+                show_destination.innerHTML = destination_place.formatted_address;
+            }
+        }
+
+
+        var origin_place_id = "{{origin}}";
+        var destination_place_id = "{{destiny}}";
+        console.log(origin_place_id);
+        console.log(destination_place_id);
+        var travel_mode = google.maps.TravelMode.DRIVING;
+        var map = new google.maps.Map(document.getElementById('map'), {
+            mapTypeControl: false,
+            center: {
+                lat: 40.4412308,
+                lng: -3.6897286
+            },
+            zoom: 14,
+            styles: map_styles,
+        });
+
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        directionsDisplay.setMap(map);
+
+        /* Bogdan */
+        route(origin_place_id, destination_place_id, travel_mode,
+            directionsService, directionsDisplay)
+
+        var origin_input = document.getElementById('origin-input');
+        var destination_input = document.getElementById('destination-input');
+        var origin_autocomplete = new google.maps.places.Autocomplete(origin_input);
+        origin_autocomplete.bindTo('bounds', map);
+        var destination_autocomplete =
+            new google.maps.places.Autocomplete(destination_input);
+        destination_autocomplete.bindTo('bounds', map);
+
+        // Sets a listener on a radio button to change the filter type on Places
+        // Autocomplete.
+        function setupClickListener(id, mode) {
+            var radioButton = document.getElementById(id);
+            radioButton.addEventListener('click', function() {
+                travel_mode = mode;
+            });
+        }
+
+        function expandViewportToFitPlace(map, place) {
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+            }
+        }
+
+        origin_autocomplete.addListener('place_changed', function() {
+            var place = origin_autocomplete.getPlace();
+            if (!place.geometry) {
+                window.alert("Autocomplete's returned place contains no geometry");
+                return;
+            }
+            expandViewportToFitPlace(map, place);
+
+            // If the place has a geometry, store its place ID and route if we have
+            // the other place ID
+            origin_place_id = place.place_id;
+            route(origin_place_id, destination_place_id, travel_mode,
+                directionsService, directionsDisplay);
+        });
+
+        destination_autocomplete.addListener('place_changed', function() {
+            var place = destination_autocomplete.getPlace();
+            if (!place.geometry) {
+                window.alert("Autocomplete's returned place contains no geometry");
+                return;
+            }
+            expandViewportToFitPlace(map, place);
+
+            // If the place has a geometry, store its place ID and route if we have
+            // the other place ID
+            destination_place_id = place.place_id;
+            route(origin_place_id, destination_place_id, travel_mode,
+                directionsService, directionsDisplay);
+        });
+
+        function getAdressOrigin(response) {
+            var show_origin = document.getElementById('show-origin');
+            var legs = response.routes[0].legs;
+            var add_origin = legs[0].start_address;
+            show_origin.innerHTML = add_origin;
+            return add_origin;
+        }
+
+        function getAdressDestination(response) {
+          var show_destination = document.getElementById('show-destination');
+          var legs = response.routes[0].legs;
+          var add_end = legs[0].end_address;
+          show_destination.innerHTML = add_end;
+          return add_end;
+        }
+
+        getTotalDistance = function(response) {
+            var total_distance = document.getElementById('total_distance');
+            var total_duration = document.getElementById('total_duration');
+            var totalDistance = 0;
+            var totalDuration = 0;
+            var legs = response.routes[0].legs;
+            totalDistance = legs[0].distance.text;
+            totalDuration = legs[0].duration.text;
+
+            /*
+            for(var i=0; i<legs.length; ++i) {
+                totalDistance += legs[i].distance.value;
+                totalDuration += legs[i].duration.value;
+            }*/
+
+            total_distance.innerHTML = totalDistance;
+            total_duration.innerHTML = totalDuration;
+            window.duration = totalDuration;
+            window.distance = totalDistance;
+            return {
+              'total_distance': total_distance,
+              'total_duration': total_duration,
+            }
+        }
+
+        function setWindowData(){
+          window.origin;
+          window.destiny;
+          window.duration;
+          window.distance;
+        }
+
+        function route(origin_place_id, destination_place_id, travel_mode,
+            directionsService, directionsDisplay) {
+            if (!origin_place_id || !destination_place_id) {
+                return;
+            }
+            //updateOriginDestination()
+            directionsService.route({
+                origin: {
+                    'placeId': origin_place_id
+                },
+                destination: {
+                    'placeId': destination_place_id
+                },
+                travelMode: travel_mode
+            }, function(response, status) {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    getTotalDistance(response);
+                    window.destiny =getAdressDestination(response);
+                    window.origin = getAdressOrigin(response);
+                    directionsDisplay.setDirections(response);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        }
+    }
+
+    $(document).ready(function(){
+      function submitForm(form){
+          var url = form.attr("action");
+          var formData = $(form).serializeArray();
+          console.log(formData)
+          $.post(url, formData).done(function (data) {
+              console.log('writting cookie .....');
+              console.log(data.route_id);
+              $.cookie("route_id", data.route_id);
+          });
+      }
+
+      function saveRoute(){
+        $('#id_origin').val(window.origin);
+        $('#id_destiny').val(window.destiny);
+        $('#id_duration').val(window.duration);
+        $('#id_distance').val(window.distance);
+        var form = $('#route-form');
+        submitForm(form);
+        $("#myModal").modal();
+      }
+
+      $("#btn-submit-route").click(function(){
+        clickFacebook();
+        saveRoute();
+      });
+
+
+      $("#signup_form").validate();
+
+});
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfrXNpIRvbO7jRvnGmz1Du34NHz1YspTI&libraries=places&callback=initMap" async defer></script>
+<script>
+</script>
+
+{% endblock javascript %}

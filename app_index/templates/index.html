@@ -18,7 +18,7 @@
     </p>
     <div class="row row-home-form" >
       <div class="col-md-12 col-home-form centered" data-spy="affix" data-offset-top="405">
-        <form action="{% url 'pricing' %}" method="post">
+        <form action="{% url 'pricing-taxi' %}" method="post">
           {% csrf_token %}
           <div id="locationField">
             <button type="submit" class="btn btn-primary btn-go-fake" disabled>Ver Precios</button>
