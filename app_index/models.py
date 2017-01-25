@@ -1,6 +1,5 @@
 from __future__ import unicode_literals
 from allauth import app_settings
-
 from django.db import models
 
 
