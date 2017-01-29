@@ -4,50 +4,22 @@
 
 {% block content %}
 
-
-<div class="container container-fluid container-home">
+<div class="container-fluid container-padawaan">
   <div class="row">
-  </div>
-  <div class="overlayer">
-    <h1 class="headline">COLECTIV</h1>
-  </div>
-</div>
-
-<div class="container container-works">
-  <div class="row">
-  </div>
-  <div class="p-title">
-    <h2>Gracias Padawan!</h2>
-    <h3>"Do or do not, there is no try." </h3>
-    <p class="separator-black"></p>
-    <div class="row row-works">
-      <div class="col-md-3 col-md-offset-0 col-works">
-        <div class="img-works-container vertical-center">
-          <img class="img img-responsive img-works" src="{% static 'img_landing/register.png' %}"/>
-        </div>
-        <p class="how-subtitle">Registrate <br />en la web on en la app</p>
-      </div>
-      <div class="col-md-4 col-md-offset-1 col-works">
-        <div class="img-works-container vertical-center">
-          <img class="img img-responsive img-works" src="{% static 'img_landing/origen_destino.png' %}"/>
-        </div>
-        <p class="how-subtitle">Selecciona <br />origen y destino</p>
-      </div>
-      <div class="col-md-3 col-md-offset-1 col-works">
-        <div class="img-works-container vertical-center">
-          <img class="img img-responsive img-works " src="{% static 'img_landing/viaja_chofer.png' %}"/>
-        </div>
-        <p class="how-subtitle">Viaja con chofer <br />compartiendo gastos</p>
+    <div class="col-md-12">
+      <div class="overlayer-profile">
+        <h1 class="headline">COLECTIV</h1>
+        <p class="separator-white"></p>
+        <h2>¡Gracias por registrarte!</h2>
+        <p>
+          Colective es una solución a los problemas de tráfico <br />
+          y contaminación de ciudades como Madrid <br />
+          PERO <br />
+          La legislación española no permite que exista.
+        </p>
       </div>
     </div>
   </div>
 </div>
-
-<li>
-  <a
-     href="{% url 'account_logout' %}">
-     <button class="btn btn-alert">Salir</button>
-   </a>
-</li>
 
 {% endblock content %}

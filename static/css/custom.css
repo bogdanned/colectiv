@@ -21,11 +21,26 @@ p {
   -o-background-size: cover;
   background-size: cover; }
 
-.overlayer {
+.overlayer,
+overlayer-profile {
   position: absolute;
   top: 10%;
   left: 0;
   width: 100%; }
+
+.overlayer-profile {
+  text-align: center;
+  color: white;
+  margin: 10%; }
+  .overlayer-profile > h2 {
+    color: white;
+    font-weight: 600;
+    font-size: 44px;
+    margin-bottom: 11%; }
+  .overlayer-profile > p {
+    color: white;
+    font-weight: 600;
+    font-size: 27px; }
 
 .headline {
   font-weight: 900;
@@ -418,5 +433,9 @@ h2 {
 
 #footer-fill {
   height: 100px; }
+
+.container-padawaan {
+  height: 100vh;
+  background-image: url("../img/padawan.png"); }
 
 /*# sourceMappingURL=custom.css.map */

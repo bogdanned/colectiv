@@ -115,7 +115,7 @@ def EmailProfileView(request):
     }
 
 
-    return render(request, "email_profile.html", context)
+    return render(request, "profile.html", context)
 
 
 def getEmail(request):
