@@ -136,10 +136,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "staticfiles")
+STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(BASE_DIR)), "staticfiles")
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(os.path.dirname(BASE_DIR), "static"),
 ]
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
@@ -147,7 +147,7 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 APPEND_SLASH = False
 
-
+cd
 # All auth
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
