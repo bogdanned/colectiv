@@ -86,9 +86,9 @@ WSGI_APPLICATION = 'colectiv.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'myproject',
-        'USER': 'myprojectuser',
-        'PASSWORD': 'password',
+        'NAME': 'colectiv',
+        'USER': 'bb9c5ce7e9da',
+        'PASSWORD': '9fa270e248f2611f',
         'HOST': 'localhost',
         'PORT': '',
     }
