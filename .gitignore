@@ -137,3 +137,6 @@ Temporary Items
 *.css.map
 
 # End of https://www.gitignore.io/api/django,python,macos,osx,sass
+
+
+.htaccess
